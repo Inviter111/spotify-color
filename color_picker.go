@@ -40,7 +40,6 @@ func imageToMatrix(i *image.Image) imageMatrix {
 	for index := range mat {
 		mat[index] = make([]float64, 3)
 	}
-	fmt.Println(xSize, ySize)
 	point := 0
 	for x := 0; x < xSize; x++ {
 		for y := 0; y < ySize; y++ {
@@ -49,9 +48,6 @@ func imageToMatrix(i *image.Image) imageMatrix {
 			mat[point][1] = float64(g)
 			mat[point][2] = float64(b)
 			point++
-			if point == 4094 {
-				fmt.Println(mat[point][0], point)
-			}
 		}
 	}
 
