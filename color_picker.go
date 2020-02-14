@@ -26,8 +26,8 @@ func main() {
 	centroids := clt.Centroids
 	for i := 0; i < 3; i++ {
 		r, g, b := int(centroids.At(i, 0)), int(centroids.At(i, 1)), int(centroids.At(i, 2))
-		r, g, b = r/0x101, g/0x101, b/0x101
-		fmt.Printf("%d, %d, %d\n", r, g, b)
+		rHex, gHex, bHex := fmt.Sprintf("%02X", r/0x101), fmt.Sprintf("%02X", g/0x101), fmt.Sprintf("%02X", b/0x101)
+		fmt.Printf("#%s%s%s\n", rHex, gHex, bHex)
 	}
 	elapsed := time.Since(start)
 	fmt.Println("Execution time:", elapsed.Seconds())
