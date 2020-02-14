@@ -7,19 +7,34 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
+
+	"github.com/pa-m/sklearn/cluster"
+	"gonum.org/v1/gonum/mat"
 )
 
 type imageMatrix [][]float64
 
 func main() {
+	start := time.Now()
 	img := getImage()
 	// fmt.Println(img.At(63, 64).RGBA())
 	mat := imageToMatrix(&img)
-	fmt.Println(mat)
+	// fmt.Println(mat)
+	clt := cluster.KMeans{NClusters: 3}
+	clt.Fit(mat, nil)
+	centroids := clt.Centroids
+	for i := 0; i < 3; i++ {
+		r, g, b := int(centroids.At(i, 0)), int(centroids.At(i, 1)), int(centroids.At(i, 2))
+		r, g, b = r/0x101, g/0x101, b/0x101
+		fmt.Printf("%d, %d, %d\n", r, g, b)
+	}
+	elapsed := time.Since(start)
+	fmt.Println("Execution time:", elapsed.Seconds())
 }
 
 func getImage() image.Image {
-	resp, err := http.Get("https://i.scdn.co/image/5a73a056d0af707b4119a883d87285feda543fbb")
+	resp, err := http.Get("https://i.scdn.co/image/ab67616d00001e02466f56d5f68eec9b0866e894")
 	if err != nil {
 		printError(err)
 	}
@@ -33,7 +48,6 @@ func getImage() image.Image {
 }
 
 func imageToMatrix(i *image.Image) imageMatrix {
-	// fmt.Println((*i).At(0, 0).RGBA())
 	xSize, ySize := (*i).Bounds().Size().X, (*i).Bounds().Size().Y
 	size := xSize * ySize
 	mat := make([][]float64, size)
@@ -65,10 +79,14 @@ func printError(err error) {
 	os.Exit(1)
 }
 
-// func (i imageMatrix) Dims() (int, int) {
-// 	return i.Bounds().Size().X, i.Bounds().Size().Y
-// }
+func (i imageMatrix) Dims() (int, int) {
+	return len(i), len(i[0])
+}
 
-// func (i imageMatrix) At(i, j int) float64 {
-// 	return image.Image(i).At(i, j)
-// }
+func (i imageMatrix) At(x int, y int) float64 {
+	return i[x][y]
+}
+
+func (i imageMatrix) T() mat.Matrix {
+	return i
+}
