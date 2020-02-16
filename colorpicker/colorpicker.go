@@ -1,7 +1,6 @@
 package colorpicker
 
 import (
-	"fmt"
 	"image"
 	"image/jpeg"
 	"log"
@@ -41,7 +40,6 @@ func GetImageColor(url string) string {
 	for _, color := range colors {
 		colorfulness[color.toHex()] = color.colorfulness()
 	}
-	fmt.Println(colorfulness)
 	maxHex := maxColorfulness(colorfulness)
 	lastHex = maxHex
 

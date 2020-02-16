@@ -1,0 +1,33 @@
+.trackInfo {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    flex-direction: column;
+    margin-top: auto;
+    bottom: 130px;
+    width: 100%;
+    right: 0px;
+}
+
+.artistName {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    color: #EEEEEE;
+    margin-top: 10px;
+}
+
+.songName {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 27px;
+    line-height: 33px;
+    color: #FFFFFF;
+    margin-bottom: 0px;
+    margin-top: 1px;
+}
