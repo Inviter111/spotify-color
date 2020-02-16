@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+
+	"spotify-color/colorpicker"
 
 	"github.com/zmb3/spotify"
 )
@@ -12,6 +15,8 @@ import (
 type colorResponse struct {
 	URL        string `json:"url"`
 	CoverColor string `json:"hex"`
+	Song       string `json:"song"`
+	Artist     string `json:"artist"`
 }
 
 const redirectURL = "http://localhost:8080/callback"
@@ -42,10 +47,12 @@ func main() {
 		}
 		imgURL := curr.Item.Album.Images[0].URL
 		smallImgURL := curr.Item.Album.Images[1].URL
-		hex := getImageColor(smallImgURL)
+		hex := colorpicker.GetImageColor(smallImgURL)
 		resp := colorResponse{
 			URL:        imgURL,
 			CoverColor: hex,
+			Song:       curr.Item.Name,
+			Artist:     curr.Item.Artists[0].Name,
 		}
 
 		w.Header().Set("Content-Type", "application/json")
@@ -85,4 +92,9 @@ func completeAuth(w http.ResponseWriter, r *http.Request) {
 	// fmt.Fprint(w, "Login success")
 	http.Redirect(w, r, "http://localhost:8080/player", 301)
 	ch <- &client
+}
+
+func printError(err error) {
+	log.Fatalln("Error:", err)
+	os.Exit(1)
 }
