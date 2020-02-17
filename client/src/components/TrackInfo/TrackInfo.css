@@ -1,21 +1,17 @@
 .trackInfo {
     display: flex;
-    position: absolute;
     align-items: center;
     justify-content: center;
     max-width: 100%;
     flex-direction: column;
-    margin-top: auto;
-    bottom: 130px;
-    width: 100%;
-    right: 0px;
+    margin-top: 10px;
 }
 
 .artistName {
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 24px;
     color: #EEEEEE;
     margin-top: 10px;
@@ -25,9 +21,8 @@
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 900;
-    font-size: 27px;
+    font-size: 24px;
     line-height: 33px;
     color: #FFFFFF;
     margin-bottom: 0px;
-    margin-top: 1px;
 }
