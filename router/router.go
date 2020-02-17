@@ -2,6 +2,7 @@ package router
 
 import (
 	"spotify-color/router/handlers"
+	"spotify-color/ws"
 
 	"github.com/valyala/fasthttp"
 )
@@ -12,6 +13,8 @@ func RequestHandler(ctx *fasthttp.RequestCtx) {
 	switch string(ctx.Path()) {
 	case "/get-color":
 		handlers.ColorPickerHandler(ctx)
+	case "/ws":
+		ws.ServeWs(ctx)
 	default:
 		ctx.Error("Unsupported path", fasthttp.StatusNotFound)
 	}
