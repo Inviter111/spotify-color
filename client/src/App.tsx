@@ -44,7 +44,7 @@ class App extends React.Component<any, IState> {
             artistName,
           });
           const smallImageURL = state.track_window.current_track.album.images[0].url;
-          const res = await axios.get(`${config.baseURL}/getColor?url=${smallImageURL}`);
+          const res = await axios.get(`${config.baseURL}/get-color?url=${smallImageURL}`);
           this.setState({
             imageURL,
           });
