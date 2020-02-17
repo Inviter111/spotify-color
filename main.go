@@ -15,6 +15,7 @@ type colorResponse struct {
 }
 
 func main() {
+	PORT := "8080"
 	http.HandleFunc("/getColor", func(w http.ResponseWriter, r *http.Request) {
 		setupResponse(&w, r)
 		url, ok := r.URL.Query()["url"]
@@ -35,10 +36,8 @@ func main() {
 		}
 	})
 
-	err := http.ListenAndServe(":8080", nil)
-	if err != nil {
-		printError(err)
-	}
+	fmt.Println("Server listening on port", PORT)
+	log.Fatal(http.ListenAndServe(":"+PORT, nil))
 }
 
 func printError(err error) {
