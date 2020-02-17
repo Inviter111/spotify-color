@@ -29,10 +29,16 @@ func main() {
 		}
 
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(resp)
+		err := json.NewEncoder(w).Encode(resp)
+		if err != nil {
+			printError(err)
+		}
 	})
 
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		printError(err)
+	}
 }
 
 func printError(err error) {

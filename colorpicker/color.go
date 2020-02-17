@@ -23,15 +23,6 @@ func createColors(d *mat.Dense) []hexColor {
 	return colors
 }
 
-func colorsToHex(c []hexColor) []string {
-	h := make([]string, len(c))
-	for index := range h {
-		h[index] = c[index].toHex()
-	}
-
-	return h
-}
-
 func (c hexColor) toHex() string {
 	r, g, b := c.r, c.g, c.b
 	rHex, gHex, bHex := fmt.Sprintf("%02X", r/0x101), fmt.Sprintf("%02X", g/0x101), fmt.Sprintf("%02X", b/0x101)
