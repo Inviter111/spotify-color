@@ -11,5 +11,10 @@
 
 .no-color {
     background-attachment: fixed;
-    background: linear-gradient(180deg, #B3B3B3 0%, #888888 36.46%, #010101 100%);
+    background: linear-gradient(
+        180deg,
+        #b3b3b3 0%,
+        #888888 36.46%,
+        #010101 100%
+    );
 }

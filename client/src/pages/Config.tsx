@@ -1,11 +1,11 @@
-import React from 'react'
-import { config } from '../config'
+import React from "react";
+import { config } from "../config";
 
 export default class Config extends React.Component {
-    conn?: WebSocket
+    conn?: WebSocket;
 
     constructor(props: any) {
-        super(props)
+        super(props);
     }
 
     componentDidMount() {
@@ -20,8 +20,10 @@ export default class Config extends React.Component {
         return (
             <>
                 <p>Config</p>
-                <button onClick={this.sendMessage.bind(this)}>Send message</button>
+                <button onClick={this.sendMessage.bind(this)}>
+                    Send message
+                </button>
             </>
-        )
+        );
     }
 }

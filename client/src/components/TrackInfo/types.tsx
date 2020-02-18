@@ -1,4 +1,4 @@
 export interface IProps {
-    songName: string
-    artistName: string
+    songName: string;
+    artistName: string;
 }

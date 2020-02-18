@@ -1,6 +1,6 @@
-import React from 'react'
-import { IProps } from './types'
-import './TrackInfo.css'
+import React from "react";
+import { IProps } from "./types";
+import "./TrackInfo.css";
 
 const trackInfo: React.FC<IProps> = (props: IProps) => {
     const { songName, artistName } = props;
@@ -10,7 +10,7 @@ const trackInfo: React.FC<IProps> = (props: IProps) => {
             <p className="songName">{songName}</p>
             <p className="artistName">{artistName}</p>
         </div>
-    )
-}
+    );
+};
 
 export default trackInfo;

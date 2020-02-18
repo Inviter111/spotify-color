@@ -1,3 +1,3 @@
 export interface IProps {
-    url: string
+    url: string;
 }

@@ -8,13 +8,13 @@ import Index from "./pages/Index";
 import { useRoutes } from "hookrouter";
 
 const routes = {
-  "/": () => <Index />,
-  "/config": () => <Config />
+    "/": () => <Index />,
+    "/config": () => <Config />
 };
 
 function App() {
-  const routeResult = useRoutes(routes);
-  return <div className="App">{routeResult}</div>;
+    const routeResult = useRoutes(routes);
+    return <div className="App">{routeResult}</div>;
 }
 
 export default App;

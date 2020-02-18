@@ -8,21 +8,21 @@
 }
 
 .artistName {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
     line-height: 24px;
-    color: #EEEEEE;
+    color: #eeeeee;
     margin-top: 10px;
 }
 
 .songName {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
     line-height: 33px;
-    color: #FFFFFF;
+    color: #ffffff;
     margin-bottom: 0px;
 }
