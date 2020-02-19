@@ -10,12 +10,14 @@ import { config } from "../config";
 import { loadScript } from "../utils/loadScript";
 
 import { IWebPlaybackPlayer, IWebPlaybackState } from "../types/spotify";
+import { ISettings, ConfigMessage } from '../types/common';
 
 interface IState {
     imageURL: string;
     songName: string;
     artistName: string;
     connected: boolean;
+    settings: ISettings;
 }
 
 export default class Index extends React.Component<any, IState> {
@@ -28,7 +30,10 @@ export default class Index extends React.Component<any, IState> {
             imageURL: "",
             songName: "",
             artistName: "",
-            connected: false
+            connected: false,
+            settings: {
+                enableLyrics: false,
+            },
         };
     }
 
@@ -38,7 +43,21 @@ export default class Index extends React.Component<any, IState> {
             console.log("Connection closed");
         };
         this.conn.onmessage = evt => {
-            console.log(evt.data);
+            const parsedEvent: ConfigMessage = JSON.parse(evt.data);
+            console.log(parsedEvent)
+            if (parsedEvent.type === 'getState') {
+                const message: ConfigMessage = {
+                    type: 'sendState',
+                    data: {
+                        enableLyrics: this.state.settings.enableLyrics,
+                    },
+                };
+                this.conn?.send(JSON.stringify(message));
+            } else {
+                this.setState({
+                    settings: parsedEvent.data,
+                } as IState);
+            }
         };
     }
 
@@ -116,7 +135,7 @@ export default class Index extends React.Component<any, IState> {
     }
 
     render() {
-        const { imageURL, songName, artistName, connected } = this.state;
+        const { imageURL, songName, artistName, connected, settings } = this.state;
         return (
             <>
                 {connected ? (
@@ -128,7 +147,10 @@ export default class Index extends React.Component<any, IState> {
                         />
                     </>
                 ) : (
+                    <>
+                    <p>Lyrics enabled {settings.enableLyrics.toString()}</p>
                     <Connect connect={this.connect.bind(this)} />
+                    </>
                 )}
             </>
         );
