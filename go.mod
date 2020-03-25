@@ -3,9 +3,14 @@ module spotify-color
 go 1.13
 
 require (
+	github.com/Joker/jade v1.0.0 // indirect
+	github.com/aymerick/raymond v2.0.2+incompatible // indirect
+	github.com/cbroglie/mustache v1.0.1 // indirect
 	github.com/disintegration/imaging v1.6.2
+	github.com/eknkc/amber v0.0.0-20171010120322-cdade1c07385 // indirect
 	github.com/fasthttp-contrib/websocket v0.0.0-20160511215533-1f3b11f56072
 	github.com/fasthttp/websocket v1.4.1
+	github.com/gofiber/fiber v1.7.1
 	github.com/gorilla/websocket v1.4.1
 	github.com/klauspost/compress v1.10.0 // indirect
 	github.com/klauspost/cpuid v1.2.3 // indirect

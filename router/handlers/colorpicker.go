@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"spotify-color/colorpicker"
@@ -24,8 +23,5 @@ func ColorPickerHandler(ctx *fasthttp.RequestCtx) {
 	response := colorResponse{
 		CoverColor: hex,
 	}
-	ctx.Response.Header.SetCanonical([]byte("Content-Type"), []byte("application/json"))
-	if err := json.NewEncoder(ctx).Encode(response); err != nil {
-		ctx.Error(err.Error(), fasthttp.StatusInternalServerError)
-	}
+	JSONResponse(ctx, response)
 }

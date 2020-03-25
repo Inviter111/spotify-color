@@ -2,8 +2,10 @@ package main
 
 import (
 	"log"
-	"net/http"
+	"spotify-color/router"
 	"spotify-color/ws"
+
+	"github.com/valyala/fasthttp"
 )
 
 func main() {
@@ -12,11 +14,9 @@ func main() {
 	hub := ws.NewHub()
 	go hub.Run()
 
-	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
-		ws.ServeWs(hub, w, r)
-	})
-
 	log.Print("Server is listening on port ", PORT)
-	http.ListenAndServe(":"+PORT, nil)
-	// log.Fatal(fasthttp.ListenAndServe(":"+PORT, router.RequestHandler))
+	// http.ListenAndServe(":"+PORT, nil)
+	log.Fatal(fasthttp.ListenAndServe(":"+PORT, func(ctx *fasthttp.RequestCtx) {
+		router.RequestHandler(ctx, hub)
+	}))
 }

@@ -8,13 +8,13 @@ import (
 )
 
 // RequestHandler is a simple router
-func RequestHandler(ctx *fasthttp.RequestCtx) {
+func RequestHandler(ctx *fasthttp.RequestCtx, hub *ws.Hub) {
 	setHeaders(ctx)
 	switch string(ctx.Path()) {
 	case "/get-color":
 		handlers.ColorPickerHandler(ctx)
 	case "/ws":
-		ws.ServeWs(ctx)
+		ws.ServeWs(hub, ctx)
 	default:
 		ctx.Error("Unsupported path", fasthttp.StatusNotFound)
 	}
